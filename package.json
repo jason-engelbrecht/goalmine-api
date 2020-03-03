@@ -1,7 +1,17 @@
 {
   "name": "gif-search-backend",
+  "author": "Jason Engelbrecht",
   "version": "0.0.0",
+  "license": "MIT",
+  "description": "This app allows a GIF to be matched with an entered phrase",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jason-engelbrecht/gif-search"
+  },
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
