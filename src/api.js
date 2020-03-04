@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var CountModel = require('./database');
+// var CountModel = require('./database');
 
 //redirect to count
 router.get('/', function(req, res, next) {
-  res.redirect('/api/count');
+  // res.redirect('/api/count');
+  res.json("hello");
 });
 
-//show count
+/*//show count
 router.get('/count', function(req, res, next) {
   CountModel.findOne({}).exec(function(err, count) {
     if (err) console.log('failure');
@@ -22,6 +23,6 @@ router.get('/increment', function(req, res, next) {
     if (err) console.log('failure');
     res.json({count});
   });
-});
+});*/
 
 module.exports = router;
