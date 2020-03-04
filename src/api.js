@@ -17,7 +17,6 @@ router.get('/count', function(req, res, next) {
 
 //increment count
 router.get('/increment', function(req, res, next) {
-  var query = { id: '5e6023d0f8f18e4a78d5d4d9' };
   CountModel.findOneAndUpdate({}, { $inc: {count: 1} }).exec(function(err, count) {
     if (err) console.log('failure');
     res.json({count});
