@@ -1,13 +1,17 @@
 {
-  "name": "gif-search-backend",
-  "author": "Jason Engelbrecht",
-  "version": "0.0.0",
+  "name": "goalmine-api",
+  "authors": [
+    "Jason Engelbrecht",
+    "Kaephas Kain",
+    "Vera Mankongvanichkul"
+  ],
+  "version": "0.1.0",
   "license": "MIT",
-  "description": "This is the backend API for the gif search/match project",
+  "description": "Backend API for GoalMine project",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/jason-engelbrecht/gif-search"
+    "url": "https://github.com/jason-engelbrecht/goalmine-api"
   },
   "engines": {
     "node": "12.x"
@@ -17,12 +21,13 @@
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.x",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "mongoose": "^5.9.3",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.2"
   }
