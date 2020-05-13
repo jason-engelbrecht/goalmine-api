@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var db = require('./database');
+import express from 'express';
+import db from './database';
 
-//TODO api routes
+const router = express.Router();
 
 router.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-module.exports = router;
+export default router;

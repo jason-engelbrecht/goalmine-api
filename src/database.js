@@ -1,4 +1,4 @@
-var sql = require('mssql');
+import sql from 'mssql';
 
 const db = new sql.ConnectionPool({
     user: 'carmendb',
@@ -19,4 +19,4 @@ db.connect(err => {
     }
 });
 
-module.exports = db;
+export default db;
