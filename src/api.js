@@ -25,13 +25,9 @@ router.post('/authLogin', (req, res) => {
     const password = req.body.password;
 
     try {
-        db.authLogin(username, password, (success) => {
-            if(success) {
-                res.sendStatus(200); //successful
-            }
-            else {
-                res.sendStatus(401); //unauthorized
-            }
+        db.authLogin(username, password, (ID, success) => {
+            if(success) res.send({ID: ID});
+            else res.sendStatus(401); //unauthorized
         });
     }
     catch(err) {

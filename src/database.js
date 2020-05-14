@@ -53,18 +53,23 @@ class Database {
     authLogin(username, password, callback) {
         const request = this.pool.request();
         request.input('username', sql.VarChar, username);
-        const getPassword = 'SELECT Password FROM UserAccount WHERE Username = @username';
+        const getPassword = 'SELECT Password, ID FROM UserAccount WHERE Username = @username';
 
         request.query(getPassword, (err, result) => {
             if(err) throw err;
             const hashedPassword = result.recordset[0].Password;
+            const ID = result.recordset[0].ID;
 
             bcrypt.compare(password, hashedPassword, (err, success) => {
                 if(err) throw err;
-                callback(success);
+                callback(ID, success);
             });
         });
     }
+
+    //TODO get students & there goals (INNER JOIN), based on parents ID from login
+
+    //TODO get all objectives based on goal ids from ^
 }
 
 export default Database;
