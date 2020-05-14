@@ -1,4 +1,5 @@
 import sql from 'mssql';
+import bcrypt from 'bcrypt';
 
 class Database {
     pool = new sql.ConnectionPool({
@@ -46,6 +47,22 @@ class Database {
         request.query(query, (err, result) => {
             if(err) throw err;
             callback(result.recordset);
+        });
+    }
+
+    authLogin(username, password, callback) {
+        const request = this.pool.request();
+        request.input('username', sql.VarChar, username);
+        const getPassword = 'SELECT Password FROM UserAccount WHERE Username = @username';
+
+        request.query(getPassword, (err, result) => {
+            if(err) throw err;
+            const hashedPassword = result.recordset[0].Password;
+
+            bcrypt.compare(password, hashedPassword, (err, success) => {
+                if(err) throw err;
+                callback(success);
+            });
         });
     }
 }

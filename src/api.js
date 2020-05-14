@@ -20,4 +20,24 @@ router.get('/parents', (req, res) => {
     });
 });
 
+router.post('/authLogin', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    try {
+        db.authLogin(username, password, (success) => {
+            if(success) {
+                res.sendStatus(200); //successful
+            }
+            else {
+                res.sendStatus(401); //unauthorized
+            }
+        });
+    }
+    catch(err) {
+        console.error(err);
+        res.sendStatus(500); //server error
+    }
+});
+
 export default router;
