@@ -20,6 +20,20 @@ router.get('/parents', (req, res) => {
     });
 });
 
+router.get('/students', (req, res) => {
+    db.getAllStudents((students) => {
+        res.send(students);
+    });
+});
+
+
+router.get('/students/:parent', (req, res) => {
+    console.log('parent: ' + req.params.parent);
+    db.getParentChildren(req.params.parent, students => {
+        res.send(students);
+    });
+});
+
 router.post('/authLogin', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;

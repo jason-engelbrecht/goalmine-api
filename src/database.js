@@ -34,6 +34,7 @@ class Database {
 
         request.query('SELECT * from UserAccount', (err, result) => {
             if(err) throw err;
+            result.
             callback(result.recordset);
         });
     }
@@ -48,6 +49,26 @@ class Database {
             if(err) throw err;
             callback(result.recordset);
         });
+    }
+
+    getAllStudents(callback) {
+        const request = this.pool.request();
+        const query = 'SELECT * FROM Student';
+        request.query(query, (err, result) => {
+            if(err) throw err;
+            callback(result.recordset);
+        })
+    }
+
+    getParentChildren(parentId, callback) {
+        console.log("parentId: " + parentId);
+        const request = this.pool.request();
+        request.input('parent', sql.Int, parentId);
+        const query = 'SELECT * FROM Student WHERE ParentId = @parent';
+        request.query(query, (err, result) => {
+            if(err) throw err;
+            callback(result.recordset);
+        })
     }
 
     authLogin(username, password, callback) {
