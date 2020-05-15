@@ -34,7 +34,6 @@ class Database {
 
         request.query('SELECT * from UserAccount', (err, result) => {
             if(err) throw err;
-            result.
             callback(result.recordset);
         });
     }
