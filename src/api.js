@@ -62,6 +62,12 @@ router.get('/evidence', (req, res) => {
     });
 });
 
+router.get('/parent/:username', (req, res) => {
+    db.getParentByUsername(req.params.username, (parent) => {
+        res.send(parent);
+    });
+});
+
 router.get('/students/:parent', (req, res) => {
     console.log('parent: ' + req.params.parent);
     db.getParentChildren(req.params.parent, students => {
