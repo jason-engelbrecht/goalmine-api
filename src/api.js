@@ -28,7 +28,7 @@ router.get('/students', (req, res) => {
 
 router.get('/goals', (req, res) => {
     db.getAllGoals((goals) => {
-        res.send(goals);
+        res.json(goals);
     });
 });
 
