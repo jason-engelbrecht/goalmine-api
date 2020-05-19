@@ -2,33 +2,10 @@ import sql from 'mssql';
 import bcrypt from 'bcrypt';
 
 class Database {
-    /*pool = new sql.ConnectionPool({
-        user: 'carmendb',
-        password: 'twoShoe22!',
-        server: 'goalmine20200220070938dbserver.database.windows.net',
-        database: 'GoalMine20200220070938_db',
-        options: {
-            enableArithAbort: true //abort fatal errors
-        }
-    });*/
-
     pool;
 
     constructor(pool) {
         this.pool = pool;
-        /*try {
-            this.connect();
-        }
-        catch(err) {
-            console.error(err);
-        }*/
-    }
-
-    connect() {
-        /*this.pool.connect(err => {
-            if(err) throw err;
-            console.log('connected');
-        });*/
     }
 
     //basic request

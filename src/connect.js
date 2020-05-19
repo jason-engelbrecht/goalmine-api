@@ -10,19 +10,14 @@ const pool = new sql.ConnectionPool({
     }
 });
 
-function initDb(callback) {
+export function initDb(callback) {
     pool.connect(err => {
-        if(err) throw err;
+        if(err) console.log(err);
         console.log('connected');
-        callback(pool);
+        callback();
     });
 }
 
-function getDb() {
+export function getConnectionPool() {
     return pool;
 }
-
-module.exports = {
-    getDb,
-    initDb
-};

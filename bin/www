@@ -25,9 +25,10 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-const initDb = require("../src/connect").initDb;
-initDb(next => {
+import { initDb } from '../src/connect';
+initDb(() => {
   server.listen(port);
+  console.log('listening');
 });
 
 server.on('error', onError);
