@@ -62,8 +62,8 @@ router.get('/evidence', (req, res) => {
     });
 });
 
-router.get('/parent/:username', (req, res) => {
-    db.getParentByUsername(req.params.username, (parent) => {
+router.get('/parent/:id', (req, res) => {
+    db.getParentByID(req.params.id, (parent) => {
         res.send(parent);
     });
 });
@@ -80,48 +80,48 @@ router.get('/goals/:student', (req, res) => {
     console.log('student: ' + req.params.student);
     db.getStudentGoals(req.params.student, goals => {
         res.send(goals);
-    })
-})
+    });
+});
 
 //gets goal objectives
 router.get('/objectives/:goal', (req, res) => {
     console.log('goal: ' + req.params.goal);
     db.getGoalObjectives(req.params.goal, objectives => {
         res.send(objectives);
-    })
-})
+    });
+});
 
 //gets objective notes
 router.get('/notes/:objective', (req, res) => {
     console.log('objective: ' + req.params.objective);
     db.getObjectiveNotes(req.params.objective, notes => {
         res.send(notes);
-    })
-})
+    });
+});
 
 //gets objective scores
 router.get('/scores/:objective', (req, res) => {
     console.log('objective: ' + req.params.objective);
     db.getObjectiveScores(req.params.objective, scores => {
         res.send(scores);
-    })
-})
+    });
+});
 
 //gets objective trials
 router.get('/trials/:objective', (req, res) => {
     console.log('objective: ' + req.params.objective);
     db.getObjectiveTrials(req.params.objective, trials => {
         res.send(trials);
-    })
-})
+    });
+});
 
 //gets objective evidence
 router.get('/evidence/:objective', (req, res) => {
     console.log('objective: ' + req.params.objective);
     db.getObjectiveEvidence(req.params.objective, evidence => {
         res.send(evidence);
-    })
-})
+    });
+});
 
 router.post('/authLogin', (req, res) => {
     const username = req.body.username;

@@ -114,12 +114,12 @@ class Database {
         })
     }
 
-    getParentByUsername(username, callback) {
+    getParentByID(id, callback) {
         const request = this.pool.request();
-        request.input('username', sql.VarChar, username);
-        const query = 'SELECT * FROM UserAccount WHERE Username = @username';
+        request.input('id', sql.Int, id);
+        const query = 'SELECT ID, Username, IsActive FROM UserAccount WHERE ID = @id';
         request.query(query, (err, result) => {
-            if(err) console.error(err);
+            if(err) console.log(err);
             callback(result.recordset[0]);
         })
     }
