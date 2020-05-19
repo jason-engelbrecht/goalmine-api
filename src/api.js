@@ -1,8 +1,9 @@
 import express from 'express';
 import Database from './database';
+const getDb = require("./connect").getDb;
 
 const router = express.Router();
-const db = new Database();
+const db = new Database(getDb());
 
 router.get('/', (req, res) => {
     res.send('Hello world');
