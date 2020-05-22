@@ -8,17 +8,6 @@ class Database {
         this.pool = pool;
     }
 
-    //basic request
-    getAllUsers(callback) {
-        const request = this.pool.request();
-
-        request.query('SELECT * from UserAccount', (err, result) => {
-            if(err) throw err;
-            callback(result.recordset);
-        });
-    }
-
-    //request w input parameter
     getAllParents(callback) {
         const request = this.pool.request();
         request.input('parent', sql.Bit, 1);
@@ -189,23 +178,18 @@ class Database {
     authLogin(username, password, callback) {
         const request = this.pool.request();
         request.input('username', sql.VarChar, username);
-        const getPassword = 'SELECT Password, ID FROM UserAccount WHERE Username = @username';
+        const getPassword = 'SELECT Password, ID, Username, IsActive FROM UserAccount WHERE Username = @username';
 
         request.query(getPassword, (err, result) => {
             if(err) throw err;
             const hashedPassword = result.recordset[0].Password;
-            const ID = result.recordset[0].ID;
 
             bcrypt.compare(password, hashedPassword, (err, success) => {
                 if(err) throw err;
-                callback(ID, success);
+                callback(result.recordset[0], success);
             });
         });
     }
-
-    //TODO get students & their goals (INNER JOIN), based on parents ID from login
-
-    //TODO get all objectives based on goal ids from ^
 }
 
 export default Database;

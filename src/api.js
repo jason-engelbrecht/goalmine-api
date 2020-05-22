@@ -9,12 +9,6 @@ router.get('/', (req, res) => {
     res.send('Hello world');
 });
 
-router.get('/users', (req, res) => {
-    db.getAllUsers((users) => {
-        res.send(users);
-    });
-});
-
 router.get('/parents', (req, res) => {
     db.getAllParents((parents) => {
         res.send(parents);
@@ -129,8 +123,8 @@ router.post('/authLogin', (req, res) => {
     const password = req.body.password;
 
     try {
-        db.authLogin(username, password, (ID, success) => {
-            if(success) res.send({ID: ID});
+        db.authLogin(username, password, (parent, success) => {
+            if(success) res.send(parent);
             else res.sendStatus(401); //unauthorized
         });
     }
